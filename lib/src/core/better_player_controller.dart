@@ -277,16 +277,13 @@ class BetterPlayerController {
 
   ///Configure subtitles based on subtitles source.
   void _setupSubtitles() {
-    _betterPlayerSubtitlesSourceList.add(
-      BetterPlayerSubtitlesSource(type: BetterPlayerSubtitlesSourceType.none),
-    );
     final defaultSubtitle = _betterPlayerSubtitlesSourceList
         .firstWhereOrNull((element) => element.selectedByDefault == true);
 
+    if (defaultSubtitle == null) return;
+
     ///Setup subtitles (none is default)
-    setupSubtitleSource(
-        defaultSubtitle ?? _betterPlayerSubtitlesSourceList.last,
-        sourceInitialize: true);
+    setupSubtitleSource(defaultSubtitle, sourceInitialize: true);
   }
 
   ///Check if given [betterPlayerDataSource] is HLS / DASH-type data source.
