@@ -49,6 +49,7 @@ import androidx.media3.datasource.DataSource
 import androidx.media3.datasource.DefaultDataSource
 import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.DefaultLoadControl
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.LoadControl
 import androidx.media3.exoplayer.dash.DashMediaSource
@@ -114,6 +115,7 @@ internal class BetterPlayer(
         exoPlayer = ExoPlayer.Builder(context)
             .setTrackSelector(trackSelector)
             .setLoadControl(loadControl)
+            .setRenderersFactory(DefaultRenderersFactory(context).setEnableDecoderFallback(true))
             .build()
         workManager = WorkManager.getInstance(context)
         workerObserverMap = HashMap()
